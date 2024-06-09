@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -11,11 +11,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /** 최상위 위젯에서는 MaterialApp(android style) vs CupertinoApp(iOS style)을 선택할 수 있음 */
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(title: const Text('Hello Flutter!')),
-            body: const Center(
-              child: Text('hello world!'),
-            )));
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text('hello world!'),
+        ),
+      ),
+    );
   }
 }

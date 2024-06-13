@@ -58,6 +58,85 @@ class App extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Total Balance',
+                    style: TextStyle(
+                      color: Color(0xffbfbfbf),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  const Text(
+                    '\$5 194 382',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            color: Color(0xfff2b33a),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(9999)),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Transfer',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            color: Color(0xff1f2123),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(9999)),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Request',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

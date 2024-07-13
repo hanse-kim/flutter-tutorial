@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial/views/first/first-view.dart';
-
-import 'views/first/widgets/button.dart';
+import 'package:tutorial/views/counter/counter-view.dart';
 
 void main() {
   runApp(const App());
@@ -14,10 +12,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /** 최상위 위젯에서는 MaterialApp(android style) vs CupertinoApp(iOS style)을 선택할 수 있음 */
-    return const MaterialApp(
-      home: Scaffold(
-        backgroundColor: Color(0xff181818),
-        body: FirstView(),
+    return MaterialApp(
+      home: const CounterView(),
+      theme: ThemeData(
+        textTheme: TextTheme(titleLarge: TextStyle(color: Colors.green[700])),
       ),
     );
   }

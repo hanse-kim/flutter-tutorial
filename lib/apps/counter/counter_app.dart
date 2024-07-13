@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class CounterView extends StatefulWidget {
-  const CounterView({super.key});
+class CounterApp extends StatefulWidget {
+  const CounterApp({super.key});
 
   @override
-  State<CounterView> createState() => _CounterViewState();
+  State<CounterApp> createState() => _CounterAppState();
 }
 
-class _CounterViewState extends State<CounterView> {
+class _CounterAppState extends State<CounterApp> {
   int count = 0;
 
   @override
@@ -34,18 +34,23 @@ class _CounterViewState extends State<CounterView> {
   @override
   Widget build(BuildContext context) {
     print('build');
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CountDisplay(count: count),
-            const SizedBox(height: 8),
-            IconButton(
-              onPressed: onClicked,
-              icon: const Icon(Icons.add_box),
-            ),
-          ],
+    return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(titleLarge: TextStyle(color: Colors.green[700])),
+      ),
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CountDisplay(count: count),
+              const SizedBox(height: 8),
+              IconButton(
+                onPressed: onClicked,
+                icon: const Icon(Icons.add_box),
+              ),
+            ],
+          ),
         ),
       ),
     );

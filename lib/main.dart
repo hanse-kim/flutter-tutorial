@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorial/views/counter/counter-view.dart';
+import 'package:tutorial/views/counter/counter_view.dart';
 
 void main() {
   runApp(const App());

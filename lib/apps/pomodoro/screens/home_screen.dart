@@ -33,13 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onResetPressed() {
+    setState(() {
+      totalSeconds = initialSeconds;
+    });
+    onPausePressed();
+  }
+
   void onTick(Timer timer) {
     if (totalSeconds == 0) {
       setState(() {
         totalPomodoros += 1;
-        totalSeconds = initialSeconds;
       });
-      onPausePressed();
+      onResetPressed();
 
       return;
     }
@@ -77,15 +83,32 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 3,
             child: Center(
-              child: IconButton(
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-                icon: Icon(
-                  isRunning
-                      ? Icons.pause_circle_outline
-                      : Icons.play_circle_outline,
-                ),
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline
+                          : Icons.play_circle_outline,
+                    ),
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                  ),
+                  ElevatedButton(
+                    onPressed: onResetPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).cardColor,
+                    ),
+                    child: Text(
+                      'Reset',
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.displayLarge?.color,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

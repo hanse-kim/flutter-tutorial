@@ -10,8 +10,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int totalSeconds = 1500;
+  static const initialSeconds = 1500;
+
+  int totalSeconds = initialSeconds;
   bool isRunning = false;
+  int totalPomodoros = 0;
 
   /// late modifier: 처음에 초기화하지 않지만 실제로 사용하기 전에는 초기화한다
   late Timer timer;
@@ -31,9 +34,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onTick(Timer timer) {
+    if (totalSeconds == 0) {
+      setState(() {
+        totalPomodoros += 1;
+        totalSeconds = initialSeconds;
+      });
+      onPausePressed();
+
+      return;
+    }
+
     setState(
       () => totalSeconds -= 1,
     );
+  }
+
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    return duration.toString().split('.')[0].substring(2);
   }
 
   @override
@@ -47,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '$totalSeconds',
+                format(totalSeconds),
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: 89,
@@ -97,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Text(
-                          '0',
+                          '$totalPomodoros',
                           style: TextStyle(
                             fontSize: 54,
                             fontWeight: FontWeight.w600,

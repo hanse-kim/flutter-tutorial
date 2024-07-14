@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:tutorial/apps/webtoon/models/webtoon.dart';
+import 'package:tutorial/apps/webtoon/services/api_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Webtoon> webtoons = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchWebtoons();
+  }
+
+  void fetchWebtoons() async {
+    webtoons = await ApiService.getTodaysToons();
+    isLoading = false;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +41,15 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: null,
+      body: SingleChildScrollView(
+        child: Column(
+          children: isLoading
+              ? [
+                  const Text('Loading....'),
+                ]
+              : List.from(webtoons.map((e) => Text(e.title))),
+        ),
+      ),
     );
   }
 }

@@ -7,4 +7,14 @@ class Webtoon {
       : id = json['id'],
         title = json['title'],
         thumb = json['thumb'];
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return '''{
+  id: $id,
+  title: $title,
+  thumb: $thumb,
+}''';
+  }
 }
